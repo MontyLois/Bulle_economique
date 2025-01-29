@@ -11,8 +11,8 @@ public class GraphRenderer : MonoBehaviour
     [Min(0)] public int precision;
     public int maxStockValue;
 
-    [Range(0, 10)] public float height;
-    [Range(0, 10)] public float width;
+    [Range(0, 50)] public float height;
+    [Range(0, 50)] public float width;
 
     private List<float> stockValues; // Liste des valeurs du graphe
 
