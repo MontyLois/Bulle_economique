@@ -88,10 +88,7 @@ public class GraphRenderer : MonoBehaviour
             lineRenderer.SetPosition(i, position);
         }
 
-        // Mise à jour du texte : 
-        textComponent.text = stockValues[stockValues.Count - 1].ToString(); // Affiche la dernière valeur
-
-        // Déplacer le texte avec un décalage (modifie ces valeurs pour voir les changements)
-        textComponent.transform.position = new Vector3(lastPosition.x + 430f, lastPosition.y + 210f, 0); // Ajuster la position selon les besoins
+        // Mise à jour uniquement du texte
+        textComponent.text = stockValues[stockValues.Count - 1].ToString();
     }
 }
