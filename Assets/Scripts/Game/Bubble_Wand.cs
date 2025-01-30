@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class Bubble_WAnd
+public class Bubble_Wand
 {
-    //plus la valeur est haute, plus on peut accéder au bulle rare
-    private int rarity_max;
-
+    
     private void Create_Bubble()
     {
         
