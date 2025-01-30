@@ -170,7 +170,7 @@ public class Bubble_Manager : MonoBehaviour
     
 
     // upgrade actual used wand to next rank
-    private void UpgradeWand()
+    public void UpgradeWand()
     {
         if (sorted_BubbleWand.Count > 0)
         {

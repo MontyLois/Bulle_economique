@@ -28,11 +28,25 @@ public class GameController : MonoBehaviour
             {
                 Bubble_Manager.Instance.CreateBubble();
             }
-            else
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("F key was pressed, we are upgrading the wand ehe");
+            if (Bubble_Manager.Instance != null)
             {
-                Debug.Log("wtf where is my manager ?");
+                Bubble_Manager.Instance.UpgradeWand();
             }
-            
+        }
+        
+        
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("S key was pressed, we are selling geemeee moneeey");
+            if (Bubble_Manager.Instance != null)
+            {
+                Bubble_Manager.Instance.SellBubble(0);
+            }
         }
     }
 }
