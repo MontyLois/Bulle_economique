@@ -22,6 +22,9 @@ public class Bubble_Data : ScriptableObject
     [field: SerializeField]
     public Market_Data market { get; private set; }
     
+    [field: SerializeField]
+    public Texture icon { get; private set; }
+    
     public void SellBubble()
     {
         GameManager.Instance.AddMoney((int)market.current_price);

@@ -22,14 +22,26 @@ public class GameManager: MonoBehaviour
         //for singleton behavior_end
     }
     
-    //when we gain money
+    // for singleton Ensures it's created automatically if accessed before existing
+    public static GameManager GetInstance()
+    {
+        if (Instance == null)
+        {
+            GameObject managerObject = new GameObject("Market_Manager");
+            Instance = managerObject.AddComponent<GameManager>();
+            DontDestroyOnLoad(managerObject);
+        }
+        return Instance;
+    }
+    
+    //when we gain money and get more stonk
     public void AddMoney(int amount)
     {
         money += amount;
         UIManager.Instance.UpdateMoneyUI(money);
     }
 
-    //when we loose money
+    //when we spend money to slay even more
     public bool SpendMoney(int amount)
     {
         if (money >= amount)

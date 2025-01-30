@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameDatabase : MonoBehaviour
+public class GameDatabase
 {
         public Bubble_Wand_Data[] Bubble_Wands { get; private set; }
         public Bubble_Data[] Bubbles { get; private set; }

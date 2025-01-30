@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Rendering.UI;
 
 
 public class Bubble_Manager : MonoBehaviour
@@ -11,26 +12,20 @@ public class Bubble_Manager : MonoBehaviour
     private Bubble_Wand_Data[] bubble_wands;
     
     //Bubble Wands
-    //used bubble wand
-    private Bubble_Wand_Data used_bubble_wand;
-    //list of bubble wands for the shop
-    private List<Bubble_Wand_Data> sorted_BubbleWand;
+    private Bubble_Wand_Data used_bubble_wand; //used bubble wand by the player
+    private List<Bubble_Wand_Data> sorted_BubbleWand; //list of bubble wands for the shop
+    
     
     //Bubbles
-    //bubbles owned by the player
-    private Bubble_Data[] player_bubbles;
-    //avatar of the bubble selected
-    private GameObject current_bubble;
-    //bubble avatar preset in the scene 
-    private GameObject[] bubble_bodies; 
+    private Bubble_Data[] player_bubbles; //bubbles owned by the player
+    private GameObject current_bubble; //avatar of the bubble selected for showcast
+    private GameObject[] bubble_bodies;  //bubbles avatars preinstantiated in the scene 
     
     
     //Bubbles slots
-    //number of current slots availables
-    private int slots;
-    //number max of slots
-    private int max_slots=3;
-    private int slot_selected;
+    private int slots; //number of current slots availables
+    private int max_slots=3; //number max of slots
+    private int slot_selected; //wich slot is selected
     
     //bubble spawn location
     [SerializeField]
@@ -54,36 +49,31 @@ public class Bubble_Manager : MonoBehaviour
         //for singleton behavior_end
         
         //retrieve all data of bubbles and wands
-        Bubble_Data[] bubbles = GameController.GameDatabase.Bubbles;
-        Bubble_Wand_Data[] bubble_wands = GameController.GameDatabase.Bubble_Wands;
+        bubbles = GameController.GameDatabase.Bubbles;
+        bubble_wands = GameController.GameDatabase.Bubble_Wands;
 
         //Wands initialization
         //sort wand by number order
         sorted_BubbleWand = SortList(bubble_wands);
-        // The first wand is the one the player start with.
-        // We remove it from the list as it won't be available in the shop.
-        if (sorted_BubbleWand.Count > 0)
-        {
-            used_bubble_wand = sorted_BubbleWand.FirstOrDefault();
-            sorted_BubbleWand.Remove(used_bubble_wand);
-        }
+        // Upgrade the wand to the first one available
+        UpgradeWand();
+       
 
         //slots initialisation
         player_bubbles = new Bubble_Data[max_slots];
         slots = 1;
         slot_selected = 0;
+
+        SpawnBubbles();
     }
     
-    private void Update()
-    {
-        
-    }
+    
 
     // Create a bubble with random chance of rarity based on the wand bubble
     // Changed the UI of its slot and add graph in graph slot
-    private void CreateBubble()
+    public void CreateBubble()
     {
-        if (player_bubbles[slot_selected] == null)
+        if (!player_bubbles[slot_selected])
         {
             Bubble_Data bubble_added = null;
             int index = 0;
@@ -97,7 +87,6 @@ public class Bubble_Manager : MonoBehaviour
                 {
                     bubble_added = bubbles[i];
                     index = i;
-                    Debug.Log("test if rarity : "+bubble_rarity+" is equal to the index : "+index);
                 }
             }
             if (bubble_added)
@@ -109,10 +98,14 @@ public class Bubble_Manager : MonoBehaviour
                 current_bubble.SetActive(true);
                 
                 //change UI for selected bubble and new added bubble
-                UIManager.Instance.UpdateSelectedBubble(bubble_added);
-                UIManager.Instance.UpdateBubbleInventoryUI(player_bubbles);
+                if(UIManager.Instance)
+                {
+                    UIManager.Instance.UpdateSelectedBubble(bubble_added);
+                    UIManager.Instance.UpdateBubbleInventoryUI(player_bubbles);
+                }
             }
         }
+        Debug.Log("Slot already used");
     }
 
     //change the bubble that is showcast based on the slot selected
@@ -137,11 +130,10 @@ public class Bubble_Manager : MonoBehaviour
         }
     }
     
-    //set spawner and instantiate gameObject of bubble
-    public void SetSpawner(Transform position)
+    
+    //pre spawn all bubbles
+    private void SpawnBubbles()
     {
-        bubble_spawner = position;
-        
         // Initialize the bubble pool with the bubble prefabs from the BubbleData
         bubble_bodies = new GameObject[bubbles.Length];
         
@@ -155,7 +147,7 @@ public class Bubble_Manager : MonoBehaviour
     
     
     //remove a bubble from the player bubbles at the given slot
-    public void RemoveBubble(int index)
+    private void RemoveBubble(int index)
     {
         player_bubbles[index] = null;
         if (index == slot_selected)
@@ -184,6 +176,7 @@ public class Bubble_Manager : MonoBehaviour
         {
             used_bubble_wand = sorted_BubbleWand.FirstOrDefault();
             sorted_BubbleWand.Remove(used_bubble_wand);
+            UIManager.Instance.UpdateWandUI(used_bubble_wand);
         }
     }
     
@@ -200,6 +193,7 @@ public class Bubble_Manager : MonoBehaviour
                     if (existingdata.number_order > newdata.number_order)
                     {
                         wand_List.Insert(wand_List.IndexOf(existingdata), newdata);
+                        break;
                     }
                 }
                 wand_List.Add(newdata);

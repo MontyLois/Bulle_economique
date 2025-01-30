@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Market_Data", menuName = "Scriptable Objects/Market_Data")]
@@ -18,6 +19,9 @@ public class Market_Data : ScriptableObject
     
     [field: SerializeField]
     public GameObject graph { get; private set; }
+    
+    [field: SerializeField]
+    public List<float> stockValues { get; private set; }
     
     private float currentWaitTime=0;
     

@@ -27,7 +27,6 @@ public class GraphRenderer : MonoBehaviour
         lineRenderer = this.GetComponent<LineRenderer>();
         
         stockValues = new List<float>();
-
         for (int i = 0; i < precision; i++)
         {
             stockValues.Add(0);

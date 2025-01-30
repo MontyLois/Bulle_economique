@@ -17,4 +17,5 @@ MonoBehaviour:
   <rarity_order>k__BackingField: 1
   <base_price>k__BackingField: 0
   <body>k__BackingField: {fileID: 450154299591326268, guid: f9cb910a37bf8374c819b6ec0d9f6869, type: 3}
-  <market>k__BackingField: {fileID: 0}
+  <market>k__BackingField: {fileID: 11400000, guid: fc3d6dd7373991d44a82a130ae797955, type: 2}
+  <icon>k__BackingField: {fileID: 0}
