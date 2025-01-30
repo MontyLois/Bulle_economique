@@ -17,5 +17,5 @@ public class Bubble_Data : ScriptableObject
     public int base_price { get; private set; }
     
     [field: SerializeField]
-    public Avatar body { get; private set; }
+    public GameObject body { get; private set; }
 }
