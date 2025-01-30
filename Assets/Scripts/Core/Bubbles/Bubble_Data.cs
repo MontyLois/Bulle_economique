@@ -17,5 +17,11 @@ public class Bubble_Data : ScriptableObject
     public int base_price { get; private set; }
     
     [field: SerializeField]
+    public int max_price { get; private set; }
+    
+    [field: SerializeField]
     public GameObject body { get; private set; }
+    
+    [field: SerializeField]
+    public Market market { get; private set; }
 }

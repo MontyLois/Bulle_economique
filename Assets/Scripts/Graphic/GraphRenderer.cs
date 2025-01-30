@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GraphRenderer : MonoBehaviour
 {
-    public LineRenderer lineRenderer;
+    private LineRenderer lineRenderer;
     public GameObject textPrefab;
     private TextMeshPro textComponent;
 
@@ -24,6 +24,8 @@ public class GraphRenderer : MonoBehaviour
 
     private void Start()
     {
+        lineRenderer = this.GetComponent<LineRenderer>();
+        
         stockValues = new List<float>();
 
         for (int i = 0; i < precision; i++)
