@@ -6,7 +6,7 @@ public class Market : MonoBehaviour
     public GraphRenderer graph;
 
     private float currentWaitTime;
-    public float waitTime;
+    private float waitTime = 10;
     private int current_price;
     
     private int min_price=0;
@@ -21,6 +21,21 @@ public class Market : MonoBehaviour
             current_price = Random.Range(min_price, max_price);
             graph.SetNewStockValue(current_price);
         }
-        
+    }
+
+    private void ChangeValue(float deltaTime)
+    {
+        currentWaitTime += deltaTime;
+        if (currentWaitTime >= waitTime)
+        {
+            currentWaitTime = 0;
+            current_price = Random.Range(min_price, max_price);
+            graph.SetNewStockValue(current_price);
+        }
+    }
+
+    private void setWaitTime(float newtime)
+    {
+        waitTime = newtime;
     }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd931268daf673b44ab104b3896a2877, type: 3}
+  m_Name: Bubble_U
+  m_EditorClassIdentifier: 
+  <Category_name>k__BackingField: Grande Bulle Ultime
+  <rarity>k__BackingField: U
+  <rarity_order>k__BackingField: 4
+  <base_price>k__BackingField: 500
+  <body>k__BackingField: {fileID: 450154299591326268, guid: 516746a5eb55854499fe45ba2c3c446b, type: 3}
+  <market>k__BackingField: {fileID: 0}
