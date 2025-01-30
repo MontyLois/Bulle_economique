@@ -22,6 +22,10 @@ public class Bubble_Wand_Data : ScriptableObject
     
     [field: SerializeField]
     public int price { get; private set; }
+    
+    [field: SerializeField]
+    public Texture icon { get; private set; }
+    
     [field: SerializeField] 
     private WeightedDropRate<int> rarityDrop;
 
