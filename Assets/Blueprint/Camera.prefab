@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 3972161911375459295}
+  textPrefab: {fileID: 0}
   precision: 100
   maxStockValue: 5
   height: 1.52
@@ -324,7 +325,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.37
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

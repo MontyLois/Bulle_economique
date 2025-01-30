@@ -1,20 +1,26 @@
-using System.Collections.Generic; // Ajout de l'espace de noms pour List<T>
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GraphRenderer : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    public GameObject textPrefab; // Prefab contenant un TextMeshPro
-    private TextMeshPro textComponent; // Un seul texte pour afficher la dernière valeur
+    public GameObject textPrefab;
+    private TextMeshPro textComponent;
 
-    [Min(0)] public int precision;
-    public int maxStockValue;
+    [Min(2)] public int precision = 10;
+    public int maxStockValue = 100;
 
-    [Range(0, 10)] public float height;
-    [Range(0, 10)] public float width;
+    [Range(0, 50)] public float height = 10;
+    [Range(0, 50)] public float width = 10;
 
-    private List<float> stockValues; // Liste des valeurs du graphe
+    [Range(0.1f, 5f)] public float pointSpacing = 1f; // ✅ Espacement des points
+    [Range(0.5f, 10f)] public float yScale = 2f; // ✅ Échelle verticale
+    [Range(0.5f, 5f)] public float xScale = 1f; // ✅ Échelle horizontale
+
+    public Vector3 textPosition = new Vector3(10f, 10f, 0); // ✅ Texte fixe
+
+    private List<float> stockValues;
 
     private void Start()
     {
@@ -25,12 +31,15 @@ public class GraphRenderer : MonoBehaviour
             stockValues.Add(0);
         }
 
-        // Création d'un seul texte pour afficher la dernière valeur
+        lineRenderer.widthMultiplier = 0.2f; // ✅ Rendre la ligne plus visible
+
+        // Création du texte sans modifier sa position
         GameObject textObj = Instantiate(textPrefab, transform);
         textComponent = textObj.GetComponent<TextMeshPro>();
-        textComponent.fontSize = 400; // Ajuste la taille du texte
-        textComponent.color = Color.white; // Couleur du texte
-        textComponent.text = "0"; // Valeur de départ
+        textComponent.fontSize = 400;
+        textComponent.color = Color.white;
+        textComponent.text = "0";
+        textComponent.transform.position = textPosition; // ✅ Texte ne bouge pas
 
         DrawGraph();
     }
@@ -39,39 +48,28 @@ public class GraphRenderer : MonoBehaviour
     {
         stockValues.Add(newValue);
         stockValues.RemoveAt(0);
-
         DrawGraph();
     }
 
     private void DrawGraph()
     {
-        lineRenderer.positionCount = precision;
-        float currentPoint = 0;
-        Vector3 lastPosition = Vector3.zero;
+        lineRenderer.positionCount = stockValues.Count;
+
+        float startX = -width / 2;
+        float startY = -height / 2;
+        float maxY = height / 2;
 
         for (int i = 0; i < stockValues.Count; i++)
         {
-            float minX = -width / 2;
-            float maxX = width / 2;
-            float minY = -height / 2;
-            float maxY = height / 2;
-
-            float xPercent = currentPoint / precision;
-            float x = Mathf.Lerp(minX, maxX, xPercent);
-
-            float yPercent = stockValues[i] / maxStockValue;
-            float y = Mathf.Lerp(minY, maxY, yPercent);
+            float x = startX + (i * pointSpacing * xScale); // ✅ Espacement horizontal
+            float yPercent = stockValues[i] / (float)maxStockValue;
+            float y = Mathf.Lerp(startY, maxY, yPercent) * yScale; // ✅ Échelle verticale
 
             Vector3 position = new Vector3(x, y, 0);
             lineRenderer.SetPosition(i, position);
-            lastPosition = position; // Stocke la dernière position
-            currentPoint += 1;
         }
 
-        // Mise à jour du texte : 
-        textComponent.text = stockValues[stockValues.Count - 1].ToString(); // Affiche la dernière valeur
-
-        // Déplacer le texte avec un décalage (modifie ces valeurs pour voir les changements)
-        textComponent.transform.position = new Vector3(lastPosition.x + 430f, lastPosition.y + 210f, 0); // Ajuster la position selon les besoins
+        // Mise à jour uniquement du texte
+        textComponent.text = stockValues[stockValues.Count - 1].ToString();
     }
 }
