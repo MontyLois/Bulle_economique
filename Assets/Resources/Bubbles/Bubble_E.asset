@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd931268daf673b44ab104b3896a2877, type: 3}
   m_Name: Bubble_E
   m_EditorClassIdentifier: 
-  <Category_name>k__BackingField: Grande Bulle
+  <Category_name>k__BackingField: "Grande Bulle d'or\xE9e"
   <rarity>k__BackingField: E
   <rarity_order>k__BackingField: 3
-  <base_price>k__BackingField: 0
+  <base_price>k__BackingField: 50
   <body>k__BackingField: {fileID: 450154299591326268, guid: 516746a5eb55854499fe45ba2c3c446b, type: 3}
   <market>k__BackingField: {fileID: 11400000, guid: c8ac769917e0c7d468838ba97d90e643, type: 2}
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 2800000, guid: ce95e82dafad644449580980ed0b325f, type: 3}

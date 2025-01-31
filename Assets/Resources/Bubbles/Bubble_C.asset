@@ -15,6 +15,7 @@ MonoBehaviour:
   <Category_name>k__BackingField: Bulle
   <rarity>k__BackingField: C
   <rarity_order>k__BackingField: 0
-  <base_price>k__BackingField: 0
+  <base_price>k__BackingField: 5
   <body>k__BackingField: {fileID: 450154299591326268, guid: f9cb910a37bf8374c819b6ec0d9f6869, type: 3}
   <market>k__BackingField: {fileID: 11400000, guid: c79f8fb571144ae43a557ae0bca1c2dd, type: 2}
+  <icon>k__BackingField: {fileID: 2800000, guid: 3ae67ff30bfe4294781156a19fef013a, type: 3}

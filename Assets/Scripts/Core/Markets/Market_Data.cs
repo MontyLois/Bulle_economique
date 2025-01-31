@@ -25,15 +25,23 @@ public class Market_Data : ScriptableObject
     
     private float currentWaitTime=0;
     
-    private void UpdatePrice(float deltaTime)
+    public void UpdatePrice(float deltaTime)
     {
         currentWaitTime += deltaTime;
         if (currentWaitTime >= wait_time)
         {
             currentWaitTime = 0;
             current_price = Random.Range(min_price, max_price);
-            //graph.SetNewStockValue(current_price);
+            
+            //add new price to stock value and delete older values
+            stockValues.Add(current_price);
+            stockValues.RemoveAt(0);
         }
+    }
+
+    public void SetStockValues(List<float> newstock)
+    {
+        stockValues = newstock;
     }
 
     private void setWaitTime(float newtime)
