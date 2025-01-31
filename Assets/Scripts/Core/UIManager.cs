@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RawImage[] icons_slots;
     [SerializeField] private RawImage[] icon_availability_slot;
     [SerializeField] private Texture dolar_icon;
+    [SerializeField] private RawImage[] iconselection;
     
     
     //markets
@@ -79,7 +80,6 @@ public class UIManager : MonoBehaviour
         {
             text_name_bubble_market[index].text = "";
         }
-        
     }
 
     public void UpdateGraphCurrentPrice(int current_price, int index)
@@ -103,7 +103,8 @@ public class UIManager : MonoBehaviour
     {
         if (bubbleDatas)
         {
-            text_solts[index].text = "VENDRE";
+            text_solts[index].text = bubbleDatas.Category_name;
+            text_solts[index].fontSize = 21;
             icons_slots[index].texture = bubbleDatas.icon;
             icons_slots[index].gameObject.SetActive(true);
         }
@@ -125,5 +126,10 @@ public class UIManager : MonoBehaviour
     {
         bubble_name.text = bubbleData.Category_name;
         bubble_rarity.text = bubbleData.rarity;
+    }
+    
+    public void UpdateSelectedSlot(int oldindex, int  newindex){
+        iconselection[oldindex].gameObject.SetActive(false);
+        iconselection[newindex].gameObject.SetActive(true);
     }
 }
