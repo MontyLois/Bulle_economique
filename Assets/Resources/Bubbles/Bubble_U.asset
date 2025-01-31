@@ -18,4 +18,4 @@ MonoBehaviour:
   <base_price>k__BackingField: 500
   <body>k__BackingField: {fileID: 450154299591326268, guid: 516746a5eb55854499fe45ba2c3c446b, type: 3}
   <market>k__BackingField: {fileID: 11400000, guid: d3443da962da5bb4784e20354cf77509, type: 2}
-  <icon>k__BackingField: {fileID: 2800000, guid: dfcfaedb79c6dd34c801d4fc58f03cb1, type: 3}
+  <icon>k__BackingField: {fileID: 2800000, guid: 8bd17bc333304ab49993467d7c02eda6, type: 3}
