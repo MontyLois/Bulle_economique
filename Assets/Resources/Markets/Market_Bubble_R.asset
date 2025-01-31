@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <min_price>k__BackingField: 2
   <max_price>k__BackingField: 50
-  <current_price>k__BackingField: 2
-  <wait_time>k__BackingField: 0
+  <current_price>k__BackingField: 32
+  <wait_time>k__BackingField: 2
   <graph>k__BackingField: {fileID: 0}
-  <stockValues>k__BackingField: []
+  <stockValues>k__BackingField:
+  - 19
+  - 19
+  - 36
+  - 32
+  - 32
+  - 47
+  - 23
+  - 32
+  - 8
+  - 38

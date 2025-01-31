@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        
+        Market_Manager.Instance.UpdateMarkets(Time.deltaTime);
+        
+        
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("C key was pressed let's spawn a bubble");

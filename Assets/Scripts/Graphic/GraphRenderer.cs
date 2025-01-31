@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,10 +6,8 @@ using UnityEngine;
 public class GraphRenderer : MonoBehaviour
 {
     private LineRenderer lineRenderer;
-    public GameObject textPrefab;
-    private TextMeshPro textComponent;
 
-    [Min(2)] public int precision = 10;
+    [Min(2)] private int precision = 10;
     public int maxStockValue = 100;
 
     [Range(0, 50)] public float height = 10;
@@ -21,35 +20,53 @@ public class GraphRenderer : MonoBehaviour
     public Vector3 textPosition = new Vector3(10f, 10f, 0); // ✅ Texte fixe
 
     private List<float> stockValues;
+    private Market_Data marketData;
+    private int slot;
 
     private void Start()
     {
         lineRenderer = this.GetComponent<LineRenderer>();
-        
         stockValues = new List<float>();
         for (int i = 0; i < precision; i++)
         {
             stockValues.Add(0);
         }
-
         lineRenderer.widthMultiplier = 0.2f; // ✅ Rendre la ligne plus visible
-
-        // Création du texte sans modifier sa position
-        GameObject textObj = Instantiate(textPrefab, transform);
-        textComponent = textObj.GetComponent<TextMeshPro>();
-        textComponent.fontSize = 400;
-        textComponent.color = Color.white;
-        textComponent.text = "0";
-        textComponent.transform.position = textPosition; // ✅ Texte ne bouge pas
-
         DrawGraph();
     }
 
-    public void SetNewStockValue(int newValue)
+    private void Update()
     {
-        stockValues.Add(newValue);
-        stockValues.RemoveAt(0);
+        if (marketData)
+        {
+            stockValues = marketData.stockValues;
+            UIManager.Instance.UpdateGraphCurrentPrice(marketData.current_price, slot);
+        }
+        else
+        {
+            resetStockValues();
+            UIManager.Instance.UpdateGraphCurrentPrice(0, slot);
+        }
         DrawGraph();
+    }
+
+    private void resetStockValues()
+    {
+        for (int i = 0; i < precision; i++)
+        {
+            stockValues.Add(0);
+            stockValues.RemoveAt(0);
+        }
+    }
+
+    public void SetNewMarket(Market_Data new_marketData)
+    {
+        marketData = new_marketData;
+    }
+
+    public void SetSlot(int index)
+    {
+        slot = index;
     }
 
     private void DrawGraph()
@@ -69,8 +86,5 @@ public class GraphRenderer : MonoBehaviour
             Vector3 position = new Vector3(x, y, 0);
             lineRenderer.SetPosition(i, position);
         }
-
-        // Mise à jour uniquement du texte
-        textComponent.text = stockValues[stockValues.Count - 1].ToString();
     }
 }

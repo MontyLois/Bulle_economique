@@ -14,13 +14,7 @@ public class Market : MonoBehaviour
     
     private void Update()
     {
-        currentWaitTime += Time.deltaTime;
-        if (currentWaitTime >= waitTime)
-        {
-            currentWaitTime = 0;
-            current_price = Random.Range(min_price, max_price);
-            graph.SetNewStockValue(current_price);
-        }
+       
     }
 
     private void ChangeValue(float deltaTime)
@@ -30,7 +24,7 @@ public class Market : MonoBehaviour
         {
             currentWaitTime = 0;
             current_price = Random.Range(min_price, max_price);
-            graph.SetNewStockValue(current_price);
+           // graph.SetNewStockValue(current_price);
         }
     }
 

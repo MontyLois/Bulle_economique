@@ -16,7 +16,8 @@ MonoBehaviour:
   <number_order>k__BackingField: 3
   <description>k__BackingField: blablabla
   <rank>k__BackingField: SRR
-  <price>k__BackingField: 200
+  <price>k__BackingField: 30
+  <icon>k__BackingField: {fileID: 2800000, guid: 85f8e45726710d848bf7e7d5bddd851e, type: 3}
   rarityDrop:
     infos:
     - weight: 45

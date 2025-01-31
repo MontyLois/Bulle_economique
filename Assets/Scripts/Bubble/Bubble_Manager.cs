@@ -23,13 +23,17 @@ public class Bubble_Manager : MonoBehaviour
     
     
     //Bubbles slots
-    private int slots; //number of current slots availables
+    private bool[] slots; //if slots are unlocked
     private int max_slots=3; //number max of slots
     private int slot_selected; //wich slot is selected
+    [SerializeField]private int slot_base_price; //price of a slot
     
     //bubble spawn location
     [SerializeField]
     private Transform bubble_spawner;
+    
+    //markets
+    [SerializeField] private GraphRenderer[] graphs;
     
     //for singleton behavior
     public static Bubble_Manager Instance { get; private set; }
@@ -61,10 +65,18 @@ public class Bubble_Manager : MonoBehaviour
 
         //slots initialisation
         player_bubbles = new Bubble_Data[max_slots];
-        slots = 1;
+        slots = new bool[max_slots];
+        slots[0] = true;
         slot_selected = 0;
 
         SpawnBubbles();
+        GetAllWand(sorted_BubbleWand);
+
+        for (int i = 0; i < graphs.Length; i++)
+        {
+            graphs[i].SetSlot(i);
+        }
+        
     }
     
     
@@ -101,33 +113,59 @@ public class Bubble_Manager : MonoBehaviour
                 if(UIManager.Instance)
                 {
                     UIManager.Instance.UpdateSelectedBubble(bubble_added);
-                    UIManager.Instance.UpdateBubbleInventoryUI(player_bubbles);
+                    UIManager.Instance.UpdateBubbleInventoryUI(bubble_added, slot_selected);
+                    UIManager.Instance.UpdateGraphName(bubble_added, slot_selected);
                 }
+                
+                graphs[slot_selected].SetNewMarket(bubble_added.market);
             }
         }
         Debug.Log("Slot already used");
     }
 
+    //le bouton permets soit de vendre la bulle dans le slot, soit d'acheter le slot s'il n'est pas encore débloqué
+    public void Slot_Button(int slot_index)
+    {
+        
+        if (slots[slot_index])
+        {
+            SellBubble(slot_index);
+        }
+        else
+        {
+            if (GameManager.Instance.SpendMoney(slot_base_price*slot_index))
+            {
+                AddSlot(slot_index);
+            }
+        }
+    }
+
     //change the bubble that is showcast based on the slot selected
     public void ChangeSelectedSlot(int slot_index)
     {
-        slot_selected = slot_index;
-        if (current_bubble != null)
+        //check if the slot is available
+        if (slots[slot_index])
         {
-            current_bubble.SetActive(false);
-        }
-        current_bubble = null;
-
-        Bubble_Data currentData = player_bubbles[slot_selected];
-        if (currentData)
-        {
-            current_bubble = bubble_bodies[currentData.rarity_order];
-            if (current_bubble)
+            slot_selected = slot_index;
+            if (current_bubble != null)
             {
-                current_bubble.SetActive(true);
+                current_bubble.SetActive(false);
             }
-            UIManager.Instance.UpdateSelectedBubble(currentData);
+            current_bubble = null;
+
+            //If there is a bubble in the new slot we get the current bubble and set things active
+            Bubble_Data currentData = player_bubbles[slot_selected];
+            if (currentData)
+            {
+                current_bubble = bubble_bodies[currentData.rarity_order];
+                if (current_bubble)
+                {
+                    current_bubble.SetActive(true);
+                }
+                UIManager.Instance.UpdateSelectedBubble(currentData);
+            }
         }
+        
     }
     
     
@@ -158,14 +196,19 @@ public class Bubble_Manager : MonoBehaviour
                 current_bubble = null;
             }
         }
-        UIManager.Instance.UpdateBubbleInventoryUI(player_bubbles);
+        UIManager.Instance.UpdateBubbleInventoryUI(null, index);
+        UIManager.Instance.UpdateGraphName(null, slot_selected);
+        graphs[slot_selected].SetNewMarket(null);
     }
     
     //sell bubble in a slot
     public void SellBubble(int index)
     {
-        player_bubbles[index].SellBubble();
-        RemoveBubble(index);
+        if (player_bubbles[index])
+        {
+            player_bubbles[index].SellBubble();
+            RemoveBubble(index);
+        }
     }
     
 
@@ -174,9 +217,14 @@ public class Bubble_Manager : MonoBehaviour
     {
         if (sorted_BubbleWand.Count > 0)
         {
-            used_bubble_wand = sorted_BubbleWand.FirstOrDefault();
-            sorted_BubbleWand.Remove(used_bubble_wand);
-            UIManager.Instance.UpdateWandUI(used_bubble_wand);
+            Bubble_Wand_Data next_wand = sorted_BubbleWand.FirstOrDefault();
+            if (GameManager.Instance.SpendMoney(next_wand.price))
+            {
+                used_bubble_wand = next_wand;
+                sorted_BubbleWand.Remove(used_bubble_wand);
+                UIManager.Instance.UpdateWandUI(used_bubble_wand);
+                UIManager.Instance.UpdateNextWandUI(sorted_BubbleWand.FirstOrDefault());
+            }
         }
     }
     
@@ -196,7 +244,11 @@ public class Bubble_Manager : MonoBehaviour
                         break;
                     }
                 }
-                wand_List.Add(newdata);
+
+                if (!wand_List.Contains(newdata))
+                {
+                    wand_List.Add(newdata);
+                }
             }
         }
         return wand_List;
@@ -205,20 +257,19 @@ public class Bubble_Manager : MonoBehaviour
     //just to display in console all wand left to get
     private void GetAllWand(List<Bubble_Wand_Data> sorted_BubbleWand)
     {
+        int i = 0;
         foreach (var wand in sorted_BubbleWand)
         {
-            Debug.Log("wand 1 : " + wand.wand_name);
+            Debug.Log("wand "+i+" : " + wand.wand_name);
+            i++;
         }
     }
 
     //get new slot for the bubble let's goo
-    private void AddSlot()
+    private void AddSlot(int index)
     {
-        if (slots < max_slots)
-        {
-            slots++;
-        }
-        UIManager.Instance.AddSlot();
+        slots[index] = true;
+        UIManager.Instance.AddSlot(index);
     }
     
 }
