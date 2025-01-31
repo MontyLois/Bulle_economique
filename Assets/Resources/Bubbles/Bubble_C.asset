@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd931268daf673b44ab104b3896a2877, type: 3}
+  m_Name: Bubble_C
+  m_EditorClassIdentifier: 
+  <Category_name>k__BackingField: Bulle
+  <rarity>k__BackingField: C
+  <rarity_order>k__BackingField: 0
+  <base_price>k__BackingField: 5
+  <body>k__BackingField: {fileID: 450154299591326268, guid: f9cb910a37bf8374c819b6ec0d9f6869, type: 3}
+  <market>k__BackingField: {fileID: 11400000, guid: c79f8fb571144ae43a557ae0bca1c2dd, type: 2}
+  <icon>k__BackingField: {fileID: 2800000, guid: bb848ad391b82e2499e6f4029d671b94, type: 3}
