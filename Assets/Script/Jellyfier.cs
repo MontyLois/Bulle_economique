@@ -16,8 +16,12 @@ public class Jellyfier : MonoBehaviour
     {
         meshFilter = GetComponent<MeshFilter>();
         mesh = meshFilter.mesh;
-
+        
+        Debug.Log("Jellyfier s'est bien activé !");
+    
         GetVertices();
+        
+        
     }
 
     private void GetVertices()
@@ -34,6 +38,8 @@ public class Jellyfier : MonoBehaviour
     private void Update()
     {
         UpdateVertices();
+        
+        Debug.Log("Jellyfier fonctionne...");
     }
 
     private void UpdateVertices()
