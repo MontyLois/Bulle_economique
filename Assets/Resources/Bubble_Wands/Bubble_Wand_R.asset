@@ -17,7 +17,7 @@ MonoBehaviour:
   <description>k__BackingField: blablabla
   <rank>k__BackingField: R
   <price>k__BackingField: 10
-  <icon>k__BackingField: {fileID: 2800000, guid: acf41e27ae278054b824a2b0430bd869, type: 3}
+  <icon>k__BackingField: {fileID: 2800000, guid: 45a74c10692574b48bb63f8e3db6d287, type: 3}
   rarityDrop:
     infos:
     - weight: 60
