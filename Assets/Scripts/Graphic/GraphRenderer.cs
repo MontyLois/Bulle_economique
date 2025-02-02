@@ -27,6 +27,7 @@ public class GraphRenderer : MonoBehaviour
     {
         lineRenderer = this.GetComponent<LineRenderer>();
         stockValues = new List<float>();
+
         for (int i = 0; i < precision; i++)
         {
             stockValues.Add(0);
@@ -86,5 +87,8 @@ public class GraphRenderer : MonoBehaviour
             Vector3 position = new Vector3(x, y, 0);
             lineRenderer.SetPosition(i, position);
         }
+
+        // Mise à jour uniquement du texte
+        textComponent.text = stockValues[stockValues.Count - 1].ToString();
     }
 }
