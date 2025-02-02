@@ -70,7 +70,6 @@ public class Bubble_Manager : MonoBehaviour
         slot_selected = 0;
 
         SpawnBubbles();
-        GetAllWand(sorted_BubbleWand);
 
         for (int i = 0; i < graphs.Length; i++)
         {

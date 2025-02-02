@@ -16,6 +16,6 @@ MonoBehaviour:
   <rarity>k__BackingField: Rare
   <rarity_order>k__BackingField: 1
   <base_price>k__BackingField: 10
-  <body>k__BackingField: {fileID: 621804269110504659, guid: 6af6042e53a41614eb772b5444b7c1a4, type: 3}
+  <body>k__BackingField: {fileID: 5306198698403131473, guid: 6af6042e53a41614eb772b5444b7c1a4, type: 3}
   <market>k__BackingField: {fileID: 11400000, guid: fc3d6dd7373991d44a82a130ae797955, type: 2}
   <icon>k__BackingField: {fileID: 2800000, guid: 7afaaf0cfddb24e46b68b0b8d2f0d64f, type: 3}

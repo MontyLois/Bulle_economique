@@ -16,6 +16,6 @@ MonoBehaviour:
   <rarity>k__BackingField: Epique
   <rarity_order>k__BackingField: 3
   <base_price>k__BackingField: 50
-  <body>k__BackingField: {fileID: 5201428162512813311, guid: aa2d9f548ea64d44a9444258478bf56f, type: 3}
+  <body>k__BackingField: {fileID: 6501662291861970516, guid: de161affd8c4eed49bca5cdccc152011, type: 3}
   <market>k__BackingField: {fileID: 11400000, guid: c8ac769917e0c7d468838ba97d90e643, type: 2}
   <icon>k__BackingField: {fileID: 2800000, guid: 5463d6d780f09624c93f08862134759f, type: 3}

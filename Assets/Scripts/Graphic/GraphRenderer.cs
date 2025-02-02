@@ -91,7 +91,5 @@ public class GraphRenderer : MonoBehaviour
             Vector3 position = new Vector3(x, y, 0);
             lineRenderer.SetPosition(i, position);
         }
-        
-        Debug.Log("graph n° "+slot+ " current value :" + stockValues.Last());
     }
 }
