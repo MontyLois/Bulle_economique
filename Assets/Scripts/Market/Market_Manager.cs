@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,29 +28,37 @@ public class Market_Manager : MonoBehaviour
         }
         //for singleton behavior_end
         
-        //retrieve all data of bubbles and wands
+        //retrieve all data of markets
         markets = GameController.GameDatabase.Markets;
         
         
-        stockValues = new List<float>();
-        for (int i = 0; i < precision; i++)
-        {
-            stockValues.Add(0);
-        }
+        
         foreach (var market in markets)
         {
-            market.SetStockValues(stockValues);
+            market.SetStockValues(precision);
+        }
+        
+    }
+    
+    private void Start()
+    {
+        foreach (var market in markets)
+        {
+            StartCoroutine(UpdateStockRoutine(market));
         }
         
     }
 
-    public void UpdateMarkets(float deltaTime)
+    // Allow to update each market to a given time
+    private IEnumerator UpdateStockRoutine(Market_Data market)
     {
-        foreach (var market in markets)
+        while (true)
         {
-            market.UpdatePrice(deltaTime);
+            market.UpdatePrice();
+            yield return new WaitForSeconds(market.wait_time); 
         }
     }
+    
     
     // for singleton Ensures it's created automatically if accessed before existing
     public static Market_Manager GetInstance()

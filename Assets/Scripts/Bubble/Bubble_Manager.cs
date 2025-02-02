@@ -180,7 +180,6 @@ public class Bubble_Manager : MonoBehaviour
                 return i;
             }
         }
-
         return -1;
     }
     
@@ -213,8 +212,8 @@ public class Bubble_Manager : MonoBehaviour
             }
         }
         UIManager.Instance.UpdateBubbleInventoryUI(null, index);
-        UIManager.Instance.UpdateGraphName(null, slot_selected);
-        graphs[slot_selected].SetNewMarket(null);
+        UIManager.Instance.UpdateGraphName(null, index);
+        graphs[index].SetNewMarket(null);
     }
     
     //sell bubble in a slot

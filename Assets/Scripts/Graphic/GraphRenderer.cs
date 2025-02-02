@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -40,7 +41,9 @@ public class GraphRenderer : MonoBehaviour
     {
         if (marketData)
         {
-            stockValues = marketData.stockValues;
+            stockValues.Clear();
+            stockValues.AddRange(marketData.stockValues);
+            //stockValues = marketData.stockValues;
             UIManager.Instance.UpdateGraphCurrentPrice(marketData.current_price, slot);
         }
         else
@@ -53,10 +56,11 @@ public class GraphRenderer : MonoBehaviour
 
     private void resetStockValues()
     {
+        stockValues.Clear();
         for (int i = 0; i < precision; i++)
         {
             stockValues.Add(0);
-            stockValues.RemoveAt(0);
+            //stockValues.RemoveAt(0);
         }
     }
 
@@ -87,6 +91,8 @@ public class GraphRenderer : MonoBehaviour
             Vector3 position = new Vector3(x, y, 0);
             lineRenderer.SetPosition(i, position);
         }
+        
+        Debug.Log("graph n° "+slot+ " current value :" + stockValues.Last());
 
     }
 }
