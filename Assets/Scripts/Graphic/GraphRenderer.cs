@@ -88,7 +88,5 @@ public class GraphRenderer : MonoBehaviour
             lineRenderer.SetPosition(i, position);
         }
 
-        // Mise à jour uniquement du texte
-        textComponent.text = stockValues[stockValues.Count - 1].ToString();
     }
 }
