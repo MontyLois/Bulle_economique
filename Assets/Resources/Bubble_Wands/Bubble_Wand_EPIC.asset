@@ -16,7 +16,7 @@ MonoBehaviour:
   <number_order>k__BackingField: 5
   <description>k__BackingField: blablabla
   <rank>k__BackingField: EPIC
-  <price>k__BackingField: 50
+  <price>k__BackingField: 400
   <icon>k__BackingField: {fileID: 2800000, guid: 0f7d246cca8e0f144931afecb7e1d0b7, type: 3}
   rarityDrop:
     infos:

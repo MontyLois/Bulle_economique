@@ -146,6 +146,7 @@ public class Bubble_Manager : MonoBehaviour
         //check if the slot is available
         if (slots[slot_index])
         {
+            UIManager.Instance.UpdateSelectedSlot(slot_selected,slot_index);
             slot_selected = slot_index;
             if (current_bubble != null)
             {
@@ -155,9 +156,11 @@ public class Bubble_Manager : MonoBehaviour
 
             //If there is a bubble in the new slot we get the current bubble and set things active
             Bubble_Data currentData = player_bubbles[slot_selected];
+           
             if (currentData)
             {
-                current_bubble = bubble_bodies[currentData.rarity_order];
+                int index = GetindexOfBubble(currentData);
+                current_bubble = bubble_bodies[index];
                 if (current_bubble)
                 {
                     current_bubble.SetActive(true);
@@ -166,6 +169,19 @@ public class Bubble_Manager : MonoBehaviour
             }
         }
         
+    }
+
+    private int GetindexOfBubble(Bubble_Data bubble)
+    {
+        for (int i = 0; i < bubbles.Length; i++)
+        {
+            if (bubble == bubbles[i])
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
     
     
