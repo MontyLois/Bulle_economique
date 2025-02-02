@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c46a3f1cd5f3f4488e63b634297e7e, type: 3}
   m_Name: Market_Bubble_R
   m_EditorClassIdentifier: 
-  <min_price>k__BackingField: 12
-  <max_price>k__BackingField: 70
-  <current_price>k__BackingField: 50
+  <min_price>k__BackingField: 15
+  <max_price>k__BackingField: 50
+  <current_price>k__BackingField: 23
   <wait_time>k__BackingField: 2
   <graph>k__BackingField: {fileID: 0}
   <stockValues>k__BackingField:
-  - 21
-  - 31
+  - 52
   - 16
-  - 93
-  - 477
-  - 11
-  - 33
-  - 50
-  - 60
-  - 355
+  - 22
+  - 20
+  - 44
+  - 42
+  - 46
+  - 40
+  - 55
+  - 23

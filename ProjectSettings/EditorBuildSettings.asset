@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Bulle_economique 1.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 434a8b7058e6e0341bc70b2be8af11ce
+  - enabled: 1
+    path: Assets/Scenes/Pop_Market_MainScene.unity
     guid: 4da4a87d7441dc148b1b562bea228d77
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

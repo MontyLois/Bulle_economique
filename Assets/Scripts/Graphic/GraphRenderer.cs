@@ -9,7 +9,7 @@ public class GraphRenderer : MonoBehaviour
     private LineRenderer lineRenderer;
 
     [Min(2)] private int precision = 10;
-    public int maxStockValue = 100;
+    private int maxStockValue = 100;
 
     [Range(0, 50)] public float height = 10;
     [Range(0, 50)] public float width = 10;
@@ -41,13 +41,14 @@ public class GraphRenderer : MonoBehaviour
     {
         if (marketData)
         {
+            maxStockValue = marketData.max_price;
             stockValues.Clear();
             stockValues.AddRange(marketData.stockValues);
-            //stockValues = marketData.stockValues;
             UIManager.Instance.UpdateGraphCurrentPrice(marketData.current_price, slot);
         }
         else
         {
+            maxStockValue = 100;
             resetStockValues();
             UIManager.Instance.UpdateGraphCurrentPrice(0, slot);
         }
@@ -60,7 +61,6 @@ public class GraphRenderer : MonoBehaviour
         for (int i = 0; i < precision; i++)
         {
             stockValues.Add(0);
-            //stockValues.RemoveAt(0);
         }
     }
 
@@ -93,6 +93,5 @@ public class GraphRenderer : MonoBehaviour
         }
         
         Debug.Log("graph n° "+slot+ " current value :" + stockValues.Last());
-
     }
 }

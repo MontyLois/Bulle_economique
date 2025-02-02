@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd931268daf673b44ab104b3896a2877, type: 3}
-  m_Name: Bubble_C
+  m_Name: Bubble_1
   m_EditorClassIdentifier: 
   <Category_name>k__BackingField: Petite Bulle
-  <rarity>k__BackingField: C
+  <rarity>k__BackingField: Commun
   <rarity_order>k__BackingField: 0
   <base_price>k__BackingField: 5
   <body>k__BackingField: {fileID: 5226562270981846349, guid: 8a14ca39d6f559d43b39edeec641964d, type: 3}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd931268daf673b44ab104b3896a2877, type: 3}
-  m_Name: Bubble_E
+  m_Name: Bubble_4
   m_EditorClassIdentifier: 
   <Category_name>k__BackingField: "Grande Bulle d'or\xE9e"
-  <rarity>k__BackingField: E
+  <rarity>k__BackingField: Epique
   <rarity_order>k__BackingField: 3
   <base_price>k__BackingField: 50
   <body>k__BackingField: {fileID: 5201428162512813311, guid: aa2d9f548ea64d44a9444258478bf56f, type: 3}

@@ -126,7 +126,6 @@ public class Bubble_Manager : MonoBehaviour
     //le bouton permets soit de vendre la bulle dans le slot, soit d'acheter le slot s'il n'est pas encore débloqué
     public void Slot_Button(int slot_index)
     {
-        
         if (slots[slot_index])
         {
             SellBubble(slot_index);
@@ -168,7 +167,6 @@ public class Bubble_Manager : MonoBehaviour
                 UIManager.Instance.UpdateSelectedBubble(currentData);
             }
         }
-        
     }
 
     private int GetindexOfBubble(Bubble_Data bubble)
